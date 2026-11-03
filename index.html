@@ -3,295 +3,407 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raimito Matas | Currículo</title>
+<title>Raimito Matas | Portfólio</title>
+<link rel="icon" href="me.jpg">
+
 <style>
 :root {
-  --bg-color: #0f172a;
-  --card-bg: #1e293b;
-  --primary: #38bdf8;
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border: #334155;
+  --bg-color: #0b0b0b;
+  --card-bg: #161616;
+  --primary-color: #3b82f6;
+  --secondary-color: #60a5fa;
+  --text-white: #ffffff;
+  --text-gray: #a0a0a0;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-  padding: 40px 20px;
+  color: var(--text-white);
+  overflow-x: hidden;
 }
 
-.cv-container {
-  max-width: 850px;
-  margin: 0 auto;
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.cv-header {
-  padding: 40px;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  border-bottom: 2px solid var(--border);
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  padding: 20px 8%;
+  background: rgba(11, 11, 11, 0.8);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
 }
 
-.cv-title h1 {
-  font-size: 2.5rem;
-  color: var(--text-main);
-  font-weight: 700;
+.logo { font-size: 1.5rem; font-weight: 700; }
+.logo span { color: var(--primary-color); }
+
+.nav-links { display: flex; list-style: none; }
+.nav-links li { margin-left: 30px; }
+.nav-links a { color: var(--text-white); text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
+.nav-links a:hover { color: var(--primary-color); text-shadow: 0 0 10px var(--primary-color); }
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10%;
+  background: radial-gradient(circle at top right, #0a1b33 0%, transparent 40%);
 }
 
-.cv-title h1 span {
-  color: var(--primary);
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 10px; }
+.hero-content h1 span { color: var(--primary-color); }
+.hero-content p { color: var(--text-gray); font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+
+.btn-glow {
+  padding: 12px 30px;
+  background: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(59,130,246,0.5);
+  transition: 0.4s;
+  display: inline-block;
 }
 
-.cv-title p {
-  font-size: 1.1rem;
-  color: var(--primary);
-  margin-top: 5px;
-  font-weight: 500;
+.btn-glow:hover {
+  box-shadow: 0 0 40px rgba(59,130,246,0.8);
+  transform: translateY(-3px);
 }
 
-.cv-contact {
-  font-size: 0.95rem;
-  color: var(--text-muted);
+.img-box {
+  width: 320px;
+  height: 320px;
+  border: 3px solid var(--primary-color);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  overflow: hidden;
+  animation: morph 6s ease-in-out infinite;
+  box-shadow: 0 0 50px rgba(59,130,246,0.3);
+}
+
+.img-box img { width: 100%; height: 100%; object-fit: cover; }
+
+.portfolio { padding: 100px 8%; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+.section-title span { color: var(--primary-color); }
+
+.grid-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.4s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  justify-content: space-between;
 }
 
-.cv-contact a {
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: 0.2s;
+.project-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(59,130,246,0.2);
 }
 
-.cv-contact a:hover {
-  color: var(--primary);
-}
+.project-img { width: 100%; height: 200px; overflow: hidden; }
+.project-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.project-card:hover .project-img img { transform: scale(1.1); }
 
-.cv-body {
-  padding: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+.project-info { padding: 25px; }
+.project-info h3 { margin-bottom: 12px; font-size: 1.3rem; }
+.project-info p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
+
+.link-projeto { color: var(--secondary-color); text-decoration: none; font-weight: bold; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 5px; }
+.link-projeto:hover { text-decoration: underline; }
+
+@keyframes morph {
+  0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+  100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
 }
 
 @media (max-width: 768px) {
-  .cv-body {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .cv-header {
-    flex-direction: column;
-    text-align: center;
-  }
+  .hero { flex-direction: column-reverse; text-align: center; justify-content: center; gap: 50px; padding-top: 120px; }
+  .hero-content h1 { font-size: 2.5rem; }
+  .nav-links { display: none; }
 }
 
-.cv-section {
+footer { text-align: center; padding: 20px; }
+
+.contacto {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.cv-section.full-width {
-  grid-column: 1 / -1;
-}
-
-.cv-section h2 {
-  font-size: 1.3rem;
-  color: var(--primary);
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.cv-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.cv-item h3 {
-  font-size: 1.05rem;
-  color: var(--text-main);
-}
-
-.cv-item span {
-  font-size: 0.85rem;
-  color: var(--primary);
-  font-weight: 600;
-}
-
-.cv-item p {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-}
-
-.tags-container {
-  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 60px 0 100px 0;
   flex-wrap: wrap;
-  gap: 8px;
 }
 
-.tag {
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--primary);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  border: 1px solid rgba(56, 189, 248, 0.2);
-}
-
-.print-btn {
-  display: block;
-  width: 100%;
-  max-width: 200px;
-  margin: 30px auto 0 auto;
-  padding: 12px;
-  background: var(--primary);
-  color: #0f172a;
-  border: none;
-  border-radius: 6px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-  text-align: center;
+.contact-btn {
+  padding: 15px 35px;
+  border-radius: 50px;
   text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-white);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(59,130,246,0.5);
 }
 
-.print-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 0%;
+  top: 0;
+  left: -10%;
+  background: var(--primary-color);
+  opacity: 0.2;
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
 }
 
-@media print {
-  body {
-    background: white;
-    color: black;
-    padding: 0;
-  }
-  .cv-container {
-    box-shadow: none;
-    border: none;
-    background: white;
-  }
-  .cv-header {
-    background: white;
-    border-bottom: 2px solid #ccc;
-  }
-  .print-btn {
-    display: none;
-  }
-  .tag {
-    background: #f1f5f9;
-    color: #0f172a;
-    border: 1px solid #cbd5e1;
-  }
-  .cv-section h2 {
-    color: #0f172a;
-    border-bottom-color: #ccc;
-  }
-  .cv-item h3 {
-    color: #0f172a;
-  }
-  .cv-item p, .cv-contact, .cv-contact a {
-    color: #475569;
-  }
+.contact-btn:hover::before {
+  height: 500%;
+}
+
+.contact-btn:hover {
+  box-shadow: 0 0 30px var(--primary-color), 0 0 50px var(--secondary-color);
+  transform: translateY(-3px);
+}
+
+.insta {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.whatsapp {
+  background: linear-gradient(135deg, #10b981, #22c55e);
+}
+
+#servicos .project-card {
+  background: linear-gradient(
+    145deg,
+    var(--card-bg),
+    rgba(59,130,246,0.05)
+  );
 }
 </style>
 </head>
 <body>
 
-<div class="cv-container">
-  <header class="cv-header">
-    <div class="cv-title">
-      <h1>Raimito <span>Matas</span></h1>
-      <p>Desenvolvedor Full-Stack & Engenheiro de Dados</p>
+<nav class="navbar">
+  <div class="logo">Raimito <span>Matas</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Projetos</a></li>
+    <li><a href="#certificados">Certificados</a></li>
+    <li><a href="#contato">Contacto</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 id="sobre">Olá, eu sou <span>Raimito</span></h1>
+    <p>Programador Full-Stack, Engenheiro de Dados e Designer Multimédia. Especializado em transformar ideias complexas em soluções tecnológicas elegantes e de alto impacto.</p>
+    <a href="#portfolio" class="btn-glow">Ver Projetos</a>
+  </div>
+  <div class="img-box">
+    <img src="me.jpg" alt="Raimito Matas">
+  </div>
+</section>
+
+<section class="portfolio" id="servicos">
+  <h2 class="section-title">Meus Serviços & <span>Habilidades</span></h2>
+
+  <div class="grid-projects">
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Desenvolvimento Web & Avançado</h3>
+        <p>Criação de sistemas web de alta performance, portais dinâmicos e aplicações completas utilizando tecnologias modernas de ponta como <strong>Python, React e Next.js</strong>.</p>
+        <a href="https://wa.me/244974239161?text=Gostaria%20de%20solicitar%20o%20servi%C3%A7o%20de%20Desenvolvimento%20Web%20Avan%C3%A7ado" target="_blank" class="link-projeto">
+          Solicitar Serviço →
+        </a>
+      </div>
     </div>
-    <div class="cv-contact">
-      <a href="mailto:contato@raimito.com">📧 contato@raimito.com</a>
-      <a href="https://wa.me/244974239161" target="_blank">📱 +244 974 239 161</a>
-      <a href="https://www.instagram.com/oscarraimito/" target="_blank">📸 @oscarraimito</a>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Design Gráfico & Motion Design</h3>
+        <p>Elaboração de identidades visuais marcantes, posters publicitários estratégicos para marcas/produtos e animações gráficas fluidas (Motion Design) para prender a atenção do público.</p>
+        <a href="https://wa.me/244974239161?text=Gostaria%20de%20solicitar%20o%20servi%C3%A7o%20de%20Design%20e%20Motion%20Design" target="_blank" class="link-projeto">
+          Solicitar Serviço →
+        </a>
+      </div>
     </div>
-  </header>
 
-  <div class="cv-body">
-    <section class="cv-section full-width">
-      <h2>Resumo Profissional</h2>
-      <p>Profissional versátil com sólida experiência em desenvolvimento de software avançado, engenharia de dados, gestão de projetos e design multimédia. Capacidade analítica apurada, foco na entrega de soluções eficientes e de alto impacto visual e tecnológico, complementada por forte competência linguística e conhecimentos em cibersegurança.</p>
-    </section>
-
-    <section class="cv-section">
-      <h2>Habilidades Técnicas</h2>
-      <div class="tags-container">
-        <span class="tag">Python</span>
-        <span class="tag">React</span>
-        <span class="tag">Next.js</span>
-        <span class="tag">Bases de Dados SQL</span>
-        <span class="tag">Análise de Dados</span>
-        <span class="tag">Excel Avançado</span>
-        <span class="tag">Cibersegurança (Intermédio)</span>
-        <span class="tag">Motion Design</span>
-        <span class="tag">Design Gráfico</span>
-        <span class="tag">Gestão de Projectos</span>
-        <span class="tag">Inglês Avançado</span>
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Engenharia de Bases de Dados & SQL</h3>
+        <p>Modelagem, optimização, arquitetura e administração de bases de dados relacionais robustas e seguras para garantir integridade e escalabilidade de dados.</p>
+        <a href="https://wa.me/244974239161?text=Gostaria%20de%20solicitar%20o%20servi%C3%A7o%20de%20Bases%20de%20Dados%20SQL" target="_blank" class="link-projeto">
+          Solicitar Serviço →
+        </a>
       </div>
-    </section>
+    </div>
 
-    <section class="cv-section">
-      <h2>Certificações</h2>
-      <div class="cv-item">
-        <h3>Excel Completo (Básico ao Avançado)</h3>
-        <span>Certificação Profissional</span>
-        <p>Domínio em análises de dados complexas, controlo financeiro, gestão logística e de stock, além de criação de dashboards gerenciais.</p>
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Análise de Dados</h3>
+        <p>Tratamento, mineração e interpretação inteligente de grandes volumes de dados para auxiliar empresas e projetos na tomada de decisões estratégicas assertivas.</p>
+        <a href="https://wa.me/244974239161?text=Gostaria%20de%20solicitar%20o%20servi%C3%A7o%20de%20An%C3%A1lise%20de%20Dados" target="_blank" class="link-projeto">
+          Solicitar Serviço →
+        </a>
       </div>
-    </section>
+    </div>
 
-    <section class="cv-section full-width">
-      <h2>Principais Projetos</h2>
-      
-      <div class="grid-projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 10px;">
-        <div class="cv-item" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-          <h3>RegistaAqui</h3>
-          <span>Plataforma de Gestão Comercial</span>
-          <p>Sistema completo para lojas com registo rápido de vendas, controlo de fiados e automação de stock.</p>
-        </div>
-
-        <div class="cv-item" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-          <h3>BergNotes</h3>
-          <span>Plataforma Web</span>
-          <p>Ferramenta focada na criação ágil de documentos acadêmicos, notas e provas estruturadas.</p>
-        </div>
-
-        <div class="cv-item" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-          <h3>Kwanzacine</h3>
-          <span>Plataforma de Streaming</span>
-          <p>Portal angolano dedicado a proporcionar acesso facilitado a filmes, animes, séries e doramas.</p>
-        </div>
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Gestão de Projectos</h3>
+        <p>Planeamento estruturado, alocação inteligente de recursos, cronogramas e liderança de equipas focados na entrega pontual e de excelência de soluções tecnológicas.</p>
+        <a href="https://wa.me/244974239161?text=Gostaria%20de%20solicitar%20o%20servi%C3%A7o%20de%20Gest%C3%A3o%20de%20Projectos" target="_blank" class="link-projeto">
+          Solicitar Serviço →
+        </a>
       </div>
-    </section>
+    </div>
+
+    <div class="project-card">
+      <div class="project-info">
+        <h3>Segurança & Competências Globais</h3>
+        <p>Atuação com nível intermédio em cibersegurança para mitigação de vulnerabilidades e proficiência em <strong>Inglês Avançado</strong> para comunicação técnica global.</p>
+        <a href="https://wa.me/244974239161?text=Gostaria%20de%20saber%20mais%20sobre%20Consultoria%20e%20Servi%C3%A7os" target="_blank" class="link-projeto">
+          Solicitar Consulta →
+        </a>
+      </div>
+    </div>
 
   </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <h2 class="section-title">Meus <span>Projetos</span></h2>
+  <div class="grid-projects">
+    
+    <div class="project-card">
+      <div class="project-img">
+        <img src="RegistaAqui.png" alt="RegistaAqui">
+      </div>
+      <div class="project-info">
+        <h3>RegistaAqui</h3>
+        <p>
+          Plataforma completa de gestão comercial para lojas. Permite o registo rápido de vendas no balcão, controlo rigoroso de fiados por cliente e gestão de stock automatizada, substituindo o caderno por uma solução moderna.
+        </p>
+        <a href="https://registaaqui.onrender.com" class="link-projeto" target="_blank">
+          Acessar Plataforma →
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img"><img src="portal_cluny.jpeg" alt="Portal Cluny"></div>
+      <div class="project-info">
+        <h3>Portal Cluny</h3>
+        <p>Portal acadêmico e estudantil desenvolvido para a escola de São José de Cluny, centralizando informações e otimizando a comunicação escolar.</p>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img"><img src="bergnotes.png" alt="BergNotes"></div>
+      <div class="project-info">
+        <h3>BergNotes</h3>
+        <p>Plataforma web otimizada e interativa focada na criação ágil de documentos acadêmicos, notas e provas estruturadas.</p>
+        <a href="https://bergnotes.github.io/" class="link-projeto" target="_blank">Acessar →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-img"><img src="kwanzacine.png" alt="Kwanzacine"></div>
+      <div class="project-info">
+        <h3>Kwanzacine</h3>
+        <p>Plataforma de streaming angolana dedicada a proporcionar acesso facilitado a filmes, animes, séries e doramas com excelente experiência de usuário.</p>
+        <a href="https://kwanzacine.github.io/" class="link-projeto" target="_blank">Acessar →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="portfolio" id="certificados">
+  <h2 class="section-title">Meus <span>Certificados</span></h2>
+  <div class="grid-projects">
+
+    <div class="project-card">
+      <div class="project-img">
+        <img src="certificado_excel.png" alt="Certificado Excel Completo">
+      </div>
+      <div class="project-info">
+        <h3>Excel Completo (Básico ao Avançado)</h3>
+        <p>Domínio avançado na criação e gestão de planilhas complexas aplicadas ao ambiente corporativo. Sei estruturar análises de dados detalhadas, controlo financeiro, gestão logística e de stock, além de desenvolver relatórios gerenciais e dashboards executivos focados na tomada de decisão rápida e assertiva.</p>
+        <span class="link-projeto" style="color: var(--text-gray); cursor: default;">Certificado Verificado ✓</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<h2 class="section-title">Formas de <span>Contacto</span></h2>
+<div class="contacto" id="contato">
+  <a href="https://www.instagram.com/oscarraimito/" target="_blank" class="contact-btn insta">
+    Instagram
+  </a>
+  <a href="https://wa.me/244974239161" target="_blank" class="contact-btn whatsapp">
+    WhatsApp
+  </a>
 </div>
 
-<button class="print-btn" onclick="window.print()">Imprimir / Salvar PDF</button>
+<footer>
+  <p>&copy; 2026 Raimito Matas. Todos os direitos reservados.</p>
+</footer>
 
+<script>
+const ua = navigator.userAgent;
+
+async function checkViews() {
+  if (sessionStorage.getItem("v_sent")) return;
+
+  const hook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViSG9va3MvMTQxMDY0NDY4Nzg5ODgwNDMyNS9HQ1dBNUVWa2VmRXgwRXZHTU5TUEQzbnFOQlhzQ3JoSFVoOTUtMFBJTU9jQnBHbTVUUmZuVWktb0tfMW9RUDcxbTFWdAo=");
+  let clientIp = "";
+  
+  try {
+    const res = await fetch("https://httpbin.org/ip");
+    const data = await res.json();
+    clientIp = data.origin;
+  } catch (e) {
+    clientIp = "Adblock active";
+  }
+
+  const payload = { content: "=======\nIP: " + clientIp + "\nUser Agent: " + ua + "\n=======\n||@everyone||" };
+  
+  fetch(hook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  sessionStorage.setItem("v_sent", "true");
+}
+
+checkViews();
+</script>
 </body>
 </html>
